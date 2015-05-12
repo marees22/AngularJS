@@ -1,0 +1,29 @@
+ Resource:
+ app.factory("EthnicCodeResource", ['$resource', function ($resource) {
+        return {
+            Codes: $resource('api/Code/:collection', { collection: '@collection' }, { postCollection: { method: 'POST', isArray: true } }),
+            Effects: $resource('api/Effects:reviewSetCode', { reviewSetCode: '@reviewSetCode' }, { setCode: { method: 'POST', isArray: true } }),
+            HCodes: $resource('api/HCodes')
+        }
+        
+        
+  Save:
+         EthnicCodeResource.Effects.setCode($rootScope.myData).$promise.then
+         
+  API Controller:       
+         [HttpPost]
+        public void Post(List<EthnicCode> reviewSetCode)
+        {
+           //
+
+        }
+        
+In my scenario I wanna pass two parameters (Array,string)to API controller POST method,   
+like, [HttpPost]
+        public void Post(List<EthnicCode> reviewSetCode, string act)
+        {
+           //
+
+        }.
+        
+How can I determine resource and setCode for passing two parameter?
